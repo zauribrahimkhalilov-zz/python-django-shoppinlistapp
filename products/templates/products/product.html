@@ -12,23 +12,19 @@
 <body>
 
 <div class="container">
-  <h2>Product list</h2>
-  <form method="POST" action="product/">
+  <form method="POST" action="product-create/">
     {% csrf_token %}
-    <div class="form-group">
-      <label>Product name:</label>
-      <input type="text" class="form-control" name="name" id="name" placeholder="Product name">
-    </div>
+    {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
 
     <hr>
 
     <ul class="list-group">
-      {% for p in products %}
-      <li class="list-group-item">{{p.name}}</li>
+      {% for instance in object_list %}
+      <li class="list-group-item"><a href="{{ instance.get_absolute_url }}">{{instance.name}}</a></li>
       {% endfor %}
-  </ul>
+    </ul>
 
 </div>
 
